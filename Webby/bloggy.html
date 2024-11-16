@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloggy</title>
+    <link rel="stylesheet" href="bloggy.css">
+    <link rel="shortcut icon" href="panties/logo.ico" type="image/x-icon">
+</head>
+<body>
+    <div id="loading" class="loading">
+        <div id="leaves">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+        </div>
+    </div>
+    <nav class="navigation">
+        <button id="btn-inicio" class="button" onclick="window.location.href=('suck.html')">Inicio</button>
+        <button id="btn-biblioteck" class="button" onclick="window.location.href=('biblioteck.html')">Biblioteck</button>
+        <button id="btn-faq" class="button" onclick="window.location.href=('faq.html')">faq</button>
+    </nav>
+    <div class="wrapper">
+        <div class="content">
+           
+            <h2>¡Bienvenido a Atenas!</h2>
+            <p>Nos emociona muchísimo que estés aquí, y queremos que sientas que este es tu espacio tanto como lo es nuestro. Bloggy nace con el propósito de compartir contigo todas las novedades, ideas frescas, proyectos innovadores y, por supuesto, todo lo que gira en torno a Atenas. Aquí, cada entrada es una pequeña ventana abierta al futuro, donde podrás conocer lo que estamos construyendo con tanto cariño. <br><br>
+
+            Este es un lugar para inspirarnos mutuamente, para crecer juntos, y para mantenerte al tanto de todo lo que estamos preparando para ti. Desde nuevos proyectos hasta momentos especiales que queremos compartir, cada palabra escrita en Bloggy tiene como fin hacerte sentir parte de esta hermosa comunidad que estamos creando con tanto esmero. <br><br>
+        
+            Nuestra visión es que aquí encuentres mucho más que solo palabras: queremos que te sientas parte de cada paso que damos, que te inspires con nuestras ideas y, por supuesto, que disfrutes cada vez que nos visites. Sabemos que el camino hacia el futuro está lleno de sorpresas y sueños por hacer realidad, y nos encantaría que te acompañes con nosotros en este viaje. <br><br>
+        
+            Te invitamos a que explores, leas, comentes, y sobre todo, que nos acompañes en cada uno de los nuevos capítulos que escribimos en Bloggy. ¡Nos sentimos muy felices de tenerte aquí y esperamos que disfrutes mucho todo lo que hemos preparado para ti!</p>
+        </div>
+    </div>
+    <script>
+        function init() {
+            // Mostrar el modal de bienvenida
+            setupWelcomeModal();
+
+            // Configurar los botones
+            setupButtons();
+
+            // Configurar el loader
+            setupLoader();
+
+            // Configurar el observador de intersección
+            setupIntersectionObserver();
+        }
+        
+    
+    window.addEventListener('load', () => {
+        const loading = document.getElementById('loading');
+        loading.style.display = 'none'; // Oculta el loading cuando la página ha cargado
+    });
+    window.addEventListener('load', () => {
+    const loading = document.getElementById('loading');
+    
+    // Mantener el loading visible durante 4 segundos
+    setTimeout(() => {
+        loading.style.display = 'none'; // Oculta el loading después de 4 segundos
+    }, 4000); // 4000 milisegundos = 4 segundos
+});
+function setupButtons() {
+            const buttons = {
+                'btn-inicio': 'login.html',
+                'btn-bloggy': 'bloggy.html',
+                'btn-biblioteck': 'biblioteck.html',
+                'btn-faq': 'faq.html'
+            };
+        }
+    </script>
+</body>
+</html>

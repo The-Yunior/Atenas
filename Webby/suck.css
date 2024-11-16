@@ -1,0 +1,763 @@
+@font-face {
+    font-family: 'Dafne';
+    src: url(letrita/SpaceGrotesk-Medium.ttf);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Dafne;
+}
+
+h2{
+    font-size: 50px;
+    margin: 10%;
+}
+
+p{
+    margin: 0;
+    font-size: 17.5px;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Dafne', sans-serif;
+    min-height: 100vh;
+    background-image: url(panties/1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.ja1 {
+    height: 100vh;
+    width: 100%;
+    max-width: 13200px;
+    margin: 5%;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    overflow: hidden;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.ja--reverse {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5%;
+}
+
+.ja_title {
+    font-size: 4rem;
+}
+
+.button {
+    position: relative;
+    padding: 1em 2em;
+    border: 2px solid #2c9caf;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #2c9caf;
+    background-color: transparent;
+    transition: color 0.3s ease, border-color 0.3s ease;
+    font-size: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(44, 156, 175, 0.1);
+    z-index: 1; 
+}
+
+.button::before {
+    content: "";
+    position: absolute;
+    left: -100%; 
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url('panties/1\,2.png') no-repeat center center; 
+    background-size: cover;
+    transition: left 0.7s ease; 
+    z-index: -1; 
+}
+
+.button:hover::before {
+    left: 0; 
+}
+
+.button:hover {
+    color: #ffffff; 
+    border-color: #ffffff; 
+    box-shadow: 0 5px 15px rgba(44, 156, 175, 0.3); 
+}
+
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #1a1a1a, #2c2c2c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.8s, visibility 0.8s;
+}
+
+.loader {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 25px 25px 75px rgba(0,0,0,0.55);
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.loader::before {
+    content: '';
+    position: absolute;
+    inset: 20px;
+    background: transparent;
+    border: 1px dashed #444;
+    border-radius: 50%;
+    box-shadow: inset -5px -5px 25px rgba(0,0,0,0.25),
+    inset 5px 5px 35px rgba(0,0,0,0.25);
+    animation: spin 8s linear infinite;
+}
+
+.loader::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px dashed #444;
+    box-shadow: inset -5px -5px 25px rgba(0,0,0,0.25),
+    inset 5px 5px 35px rgba(0,0,0,0.25);
+    animation: spin 5s linear infinite reverse;
+}
+
+.loader span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    background: transparent;
+    transform-origin: top left;
+    animation: radar81 2s linear infinite;
+    border-top: 1px solid #2c9caf;
+}
+
+.loader h2 {
+    position: relative;
+    color: #2c9caf;
+    font-size: 1.5em;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+@keyframes radar81 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes blink {
+    0% { opacity: 0.2; }
+    50% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+.loader h2 {
+    animation: blink 1.5s ease-in-out infinite;
+}
+
+.loader .circle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: #2c9caf;
+    animation: spin 3s linear infinite;
+}
+
+.loader .circle:nth-child(2) {
+    border: 2px solid transparent;
+    border-bottom-color: #2c9caf;
+    animation: spin 2s linear infinite reverse;
+}
+.logout-button {
+    background-color: #f44336; 
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    outline: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.logout-button:hover {
+    background-color: #d32f2f; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.logout-button:active {
+    background-color: #b71c1c; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transform: translateY(2px);
+}
+.modal {
+    display: flex;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: scale(0.7);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button.iniciado {
+    background-color: #4CAF50; 
+    color: white;
+}
+
+#check-mark {
+    margin-left: 5px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.button.iniciado #check-mark {
+    display: inline-block ;
+}
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    transition: opacity 0.5s, visibility 0.5s;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.liquid-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, 
+        rgba(0, 123, 255, 0.3),
+        rgba(128, 0, 255, 0.3),
+        rgba(0, 255, 255, 0.3));
+    filter: blur(10px);
+    transform: translateY(100%);
+    animation: fillScreen 4s ease-out forwards;
+}
+
+@keyframes fillScreen {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.atenas-logo {
+    font-size: 120px;
+    font-weight: 900;
+    letter-spacing: 10px;
+    position: relative;
+    color: #fff;
+    margin: 20px 0;
+    z-index: 2;
+}
+
+.atenas-logo span {
+    display: inline-block;
+    color: #fff;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+                0 0 20px rgba(255, 255, 255, 0.3),
+                0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+.wave {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.2) 25%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        rgba(255, 255, 255, 0.2) 75%, 
+        transparent 100%);
+    animation: wave 6s linear infinite;
+}
+
+.ripple {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        transparent 70%);
+    animation: ripple 4s ease-out infinite;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(1);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes wave {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(50%); }
+}
+
+.content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.content.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.floating-bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.bubble {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: float 4s infinite ease-in-out;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-100px) scale(1);
+        opacity: 0;
+    }
+}
+/* Estilos generales y reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* Loader Wrapper */
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+/* Fondo líquido */
+.liquid-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: linear-gradient(45deg, #000428, #004e92);
+}
+
+.liquid-wave {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    transform-origin: 50% 50%;
+    border-radius: 40%;
+    background: rgba(0, 128, 255, 0.1);
+    animation: liquid-wave 12s infinite linear;
+}
+
+.liquid-wave:nth-child(2) {
+    animation-duration: 8s;
+    background: rgba(0, 255, 255, 0.1);
+}
+
+.liquid-wave:nth-child(3) {
+    animation-duration: 6s;
+    background: rgba(128, 0, 255, 0.1);
+}
+
+@keyframes liquid-wave {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Rueda giratoria */
+.rotating-circle {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 30px;
+}
+
+.circle-outer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 4px solid transparent;
+    border-top-color: #00ff8c;
+    border-right-color: #00ff8c;
+    border-radius: 50%;
+    animation: rotate-circle 2s linear infinite;
+}
+
+.circle-inner {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    top: 15%;
+    left: 15%;
+    border: 4px solid transparent;
+    border-top-color: #00ffff;
+    border-left-color: #00ffff;
+    border-radius: 50%;
+    animation: rotate-circle 1.5s linear infinite reverse;
+}
+
+@keyframes rotate-circle {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Logo de Atenas */
+.atenas-logo {
+    position: relative;
+    z-index: 2;
+    font-size: 120px;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    letter-spacing: 10px;
+}
+
+.atenas-logo span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 10px rgba(0, 255, 255, 0.5),
+                    0 0 20px rgba(0, 255, 255, 0.3);
+    }
+    100% {
+        text-shadow: 0 0 20px rgba(0, 255, 255, 0.8),
+                    0 0 30px rgba(0, 255, 255, 0.5),
+                    0 0 40px rgba(0, 255, 255, 0.3);
+    }
+}
+
+/* Partículas */
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+@keyframes moveParticle {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(var(--x), var(--y)); }
+}
+
+@keyframes fadeParticle {
+    0% { opacity: 0.2; }
+    100% { opacity: 0.8; }
+}
+
+/* Contenido principal */
+.content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.content.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Navegación */
+.navigation {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.button {
+    background-color: #004e92;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #00ff8c;
+}
+
+/* Secciones */
+section {
+    margin: 50px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.ja--reverse {
+    flex-direction: row-reverse;
+}
+
+.box1 {
+    width: 45%;
+}
+
+.atenas_figura {
+    width: 45%;
+}
+
+.atena_img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.atena_img:hover {
+    transform: scale(1.05);
+}
+
+/* Animaciones para las imágenes */
+[data-animation="fade"] {
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+[data-animation="fade"].animate {
+    opacity: 1;
+}
+
+[data-animation="show"] {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 1s, transform 1s;
+}
+
+[data-animation="show"].animate {
+    opacity: 1;
+    transform: scale(1);
+}
+
+[data-animation="up"] {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s, transform 1s;
+}
+
+[data-animation="up"].animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Modal de bienvenida */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.modal.show {
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: #004e92;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #00ff8c;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.close {
+    color : #fff;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #00ff8c;
+}
+
+#modalGreeting {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}

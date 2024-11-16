@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteck - Biblioteca Digital</title>
+    <link rel="stylesheet" href="biblioteck.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<div class="loader-container">
+    <div class="cosmic-loader">
+        <div class="knowledge-universe">
+            <div class="cosmic-nodes" id="cosmicNodes"></div>
+        </div>
+    </div>
+    <div class="loader-text">En busqueda de tu conocimiento</div>
+</div>
+    <header>
+        <div class="logo">
+            <img src="panties/logo.ico" alt="Logo Biblioteck">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="suck.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="bloggy.html"><i class="fas fa-book"></i> Bloggy</a></li>
+           
+                <li><a href="faq.html"><i class="fas fa-user"></i> Faq</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Bienvenido a Biblioteck</h1>
+            <p>Tu biblioteca digital de recursos educativos</p>
+            <div class="search-container">
+                <input type="text" placeholder="Buscar recursos...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </section>
+
+        <section class="destacados">
+            
+            
+                    <div class="container">
+                        <div class="upload-container">
+                            <div class="file-upload">
+                                <input type="file" id="file-input" accept="image/*,video/*">
+                                <label for="file-input">Seleccionar Archivo</label>
+                            </div>
+                            
+                            <form class="resource-form" id="resource-form">
+                                <input type="text" id="resource-title" placeholder="Título del Recurso" required>
+                                <textarea id="resource-description" placeholder="Descripción" rows="4"></textarea>
+                                <button type="submit" class="save-btn">Guardar Recurso</button>
+                            </form>
+                        </div>
+                
+                        <div class="resources-container">
+                            <h2>Recursos Guardados</h2>
+                            <div class="resources-list" id="resources-list">
+                                <!-- Aquí se generarán las cartas de recursos -->
+                            </div>
+                        </div>
+                    </div>
+                
+                  
+                </div>
+            </div>
+        </section>
+
+        <section class="categorias-principales">
+            <h2>Categorías Principales</h2>
+            <div class="categorias-grid">
+                <div class="categoria-item">
+                    <i class="fas fa-code"></i>
+                    <h3>Programación</h3>
+                </div>
+                <div class="categoria-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Negocios</h3>
+                </div>
+                <div class="categoria-item">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Diseño</h3>
+                </div>
+                <!-- Más categorías -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Categorías</a></li>
+                    <li><a href="#">Cursos</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>Email: isaac@atenas.com</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Biblioteck. Todos los derechos reservados.</p>
+        </div>
+
+    </footer>
+
+        <script>
+    window.addEventListener('load', () => {
+        const loading = document.getElementById('loading');
+        loading.classList.add('hide');
+    });
+  
+    window.addEventListener('load', () => {
+        const loading = document.getElementById('loading');
+        setTimeout(() => {
+            loading.classList.add('hide');
+        }, 3000); // Oculta después de 3 segundos
+    });
+    window.addEventListener('load', function() {
+        const loadingContainer = document.getElementById('loading');
+        
+        // Agrega la clase para el efecto de desvanecimiento
+        loadingContainer.classList.add('fade-out');
+        
+        // Oculta el contenedor después de que la animación haya terminado
+        setTimeout(() => {
+            loadingContainer.style.display = 'none';
+        }, 500); // Tiempo debe coincidir con la duración de la transición
+    });
+    const fileUpload = document.getElementById('file-upload');
+        const fileInput = document.getElementById('file-input');
+        const fileList = document.getElementById('file-list');
+
+        // Eventos de arrastrar y soltar
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            fileUpload.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            fileUpload.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            fileUpload.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight() {
+            fileUpload.classList.add('dragover');
+        }
+
+        function unhighlight() {
+            fileUpload.classList.remove('dragover');
+        }
+
+        // Manejar archivos soltados
+        fileUpload.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            handleFiles(files);
+        }
+
+        // Manejar selección de archivos
+        fileInput.addEventListener('change', function(e) {
+            handleFiles(this.files);
+        });
+
+        class ResourceManager {
+    constructor() {
+        this.resources = JSON.parse(localStorage.getItem('resources')) || [];
+        this.resourcesList = document.getElementById('resources-list');
+        this.resourceForm = document.getElementById('resource-form');
+        this.fileInput = document.getElementById('file-input');
+        
+        this.initEventListeners();
+        this.renderResources();
+    }
+
+    initEventListeners() {
+        this.resourceForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.saveResource();
+        });
+    }
+
+    saveResource() {
+        const title = document.getElementById('resource-title').value;
+        const description = document.getElementById('resource-description').value;
+        const file = this.fileInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const resource = {
+                    id: Date.now(),
+                    title,
+                    description,
+                    mediaType: file.type,
+                    mediaUrl: event.target.result
+                };
+
+                this.resources.push(resource);
+                this.updateLocalStorage();
+                this.renderResources();
+                this.resetForm();
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    renderResources() {
+        this.resourcesList.innerHTML = '';
+        this.resources.forEach(resource => {
+            const card = document.createElement('div');
+            card.classList.add('resource-card');
+            
+            // Contenido de la carta
+            card.innerHTML = `
+                ${this.renderMedia(resource)}
+                <div class="resource-card-content">
+                    <h3>${resource.title}</h3>
+                    <p>${resource.description}</p>
+                    <div class="resource-card-actions">
+                        <button class="delete-btn" data-id="${resource.id}">Eliminar</button>
+                    </div>
+                </div>
+            `;
+
+            // Evento de eliminación
+            const deleteBtn = card.querySelector('.delete-btn');
+            deleteBtn.addEventListener('click', () => this.deleteResource(resource.id));
+
+            this.resourcesList.appendChild(card);
+        });
+    }
+
+    renderMedia(resource) {
+        if (resource.mediaType.startsWith('image/')) {
+            return `<img src="${resource.mediaUrl}" class="resource-card-media" alt="${resource.title}">`;
+        } else if (resource.mediaType.startsWith('video/')) {
+            return `<video src="${resource.mediaUrl}" class="resource-card-media" controls></video>`;
+        }
+        return '';
+    }
+
+    deleteResource(id) {
+        this.resources = this.resources.filter(resource => resource.id !== id);
+        this.updateLocalStorage();
+        this.renderResources();
+    }
+
+    updateLocalStorage() {
+        localStorage.setItem('resources', JSON.stringify(this.resources));
+    }
+
+    resetForm() {
+        this.resourceForm.reset();
+        this.fileInput.value = '';
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    new ResourceManager();
+});
+class KnowledgeLoader {
+            constructor() {
+                this.nodesContainer = document.getElementById('knowledgeNodes');
+                this.createNodes();
+                this.createConnections();
+            }
+
+            createNodes() {
+                const nodeData = [
+                    { label: 'AI', color: '#3498db' },
+                    { label: 'IoT', color: '#2ecc71' },
+                    { label: 'Data', color: '#e74c3c' },
+                    { label: 'Cloud', color: '#f39c12' },
+                    { label: 'Block', color: '#9b59b6' }
+                ];
+
+                nodeData.forEach((node, index) => {
+                    const nodeElement = document.createElement('div');
+                    nodeElement.classList.add('node');
+                    nodeElement.style.backgroundColor = node.color;
+                    nodeElement.textContent = node.label;
+                    
+                   
+                    const angle = (index / nodeData.length) * Math.PI * 2;
+                    nodeElement.style.left = `calc(50% + ${Math.cos(angle) * 120}px - 15px)`;
+                    nodeElement.style.top = `calc(50% + ${Math.sin(angle) * 120}px - 15px)`;
+
+                    this.nodesContainer.appendChild(nodeElement);
+                });
+            }
+
+            createConnections() {
+                const nodes = document.querySelectorAll('.node');
+                nodes.forEach((node, index) => {
+                    const nextNode = nodes[(index + 1) % nodes.length];
+                    this.createConnection(node, nextNode);
+                });
+            }
+
+            createConnection(startNode, endNode) {
+                const connection = document.createElement('div');
+                connection.classList.add('connection');
+
+                const startRect = startNode.getBoundingClientRect();
+                const endRect = endNode.getBoundingClientRect();
+
+                const startX = startRect.left + startRect.width / 2;
+                const startY = startRect.top + startRect.height / 2;
+                const endX = endRect.left + endRect.width / 2;
+                const endY = endRect.top + endRect.height / 2;
+
+                const length = Math.sqrt(
+                    Math.pow(endX - startX, 2) + 
+                    Math.pow(endY - startY, 2)
+                );
+
+                const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+
+                connection.style.width = `${length}px`;
+                connection.style.transform = `rotate(${angle}deg)`;
+                connection.style.left = `${startX}px`;
+                connection.style.top = `${startY}px`;
+
+                document.body.appendChild(connection);
+            }
+        }
+
+       
+        document.addEventListener('DOMContentLoaded', () => {
+            new KnowledgeLoader();
+
+            setTimeout(() => {
+                document.querySelector('.main-content').style.display = 'block';
+            }, 4000);
+        });
+</script>
+    
+</body>
+</html>

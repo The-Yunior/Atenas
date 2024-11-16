@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atenas</title>
+    <link rel="shortcut icon" href="panties/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="suck.css">
+    
+</head>
+<body>
+    <div id="welcomeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalGreeting">¡Bienvenido a Atenas!</h2>
+        </div>
+    </div>
+
+    <div class="loader-wrapper">
+        <div class="liquid-background"></div>
+        <div class="floating-bubbles"></div>
+        <div class="ripple"></div>
+        <div class="atenas-logo">
+            <span>A</span>
+            <span>T</span>
+            <span>E</span>
+            <span>N</span>
+            <span>A</span>
+            <span>S</span>
+            <div class="wave"></div>
+        </div>
+    </div>
+
+
+    <div class="content">
+        <nav class="navigation">
+            <button id="btn-inicio" class="button">Inicio</button>
+            <button id="btn-bloggy" class="button">Bloggy</button>
+            <button id="btn-biblioteck" class="button">Biblioteck</button>
+            <button id="btn-faq" class="button">Faq</button>
+        </nav>
+
+        <section class="ja1">
+            <div class="box1">
+                <h2>¡Bienvenidos a Atenas!</h2>
+            </div>
+        </section>
+
+        <section class="ja--reverse">
+            <div class="box1">
+                <h2>¿Donde estoy?</h2>
+                <p>Habrán algunos que se pregunten, "¿Qué es este lugar y por qué se llama como una ciudad griega?" y otros que no le darán importancia en lo absoluto. <br> Sin importar cual de esos personajes seas, te digo que, estas en la entrada de un portal el cual te puede llevar a un mundo inmaculado... <br><br><br>  Tan interesante y nutritivo que alberga cientos de conocimientos, desde temas comunes y aburridos como la moral para conllevar una vida sumido ante la sociedad, hasta temas que te hacen cuestionar tu camino en la vida y si realmente ves el mundo como es, un tanto Maquiavelico; desde temas inútiles como diversidades de genero, hasta temas realmente interesantes como el Universo... <br> Esto y mas te espera por descubrir en Atenas.</p>
+            </div>
+        </section>
+
+        <section class="ja1">
+            <div class="box1">
+                <h2>¿Quien soy?</h2>
+                <p>Nosotros los desarrolladores ya abrimos los ojos hace mucho, y es por eso que hacemos lo que hacemos, es hora de que tú te cuestiones quien eres, que aunque parezca obvio, muchas veces vivimos vidas que realmente no están siendo vividas por nosotros, y la verdad es que muchos se conforman con esto...  <br> <br> "Existen dos maneras de ser feliz en esta vida, una es hacerse el idiota y la otra es serlo" <br> - Sigmund Freud. </p>
+            </div>
+        </section>
+    </div>
+    <div id="loginForm" style="display: none;">
+        <form>
+            <input type="text" placeholder="Usuario">
+            <input type="password" placeholder="Contraseña">
+            <button type="submit">Iniciar sesión</button>
+        </form>
+    </div>
+
+    <script>
+        function init() {
+            // Mostrar el modal de bienvenida
+            setupWelcomeModal();
+
+            // Configurar los botones
+            setupButtons();
+
+            // Configurar el loader
+            setupLoader();
+
+            // Configurar el observador de intersección
+            setupIntersectionObserver();
+        }
+
+        function setupWelcomeModal() {
+            const modal = document.getElementById('welcomeModal');
+            
+            // Mostrar el modal
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 100);
+
+            // Configurar el cierre del modal
+            const span = document.getElementsByClassName("close")[0];
+            span.onclick = () => closeModalSmoothly(modal);
+
+            window.onclick = (event) => {
+                if (event.target == modal) {
+                    closeModalSmoothly(modal);
+                }
+            }
+
+            setTimeout(() => closeModalSmoothly(modal), 3000);
+        }
+
+        function closeModalSmoothly(modal) {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 300);
+        }
+
+        function setupLoader() {
+            setTimeout(() => {
+                const loaderWrapper = document.querySelector('.loader-wrapper');
+                const content = document.querySelector('.content');
+                
+                if (loaderWrapper) {
+                    loaderWrapper.style.opacity = '0';
+                    loaderWrapper.style.visibility = 'hidden';
+                }
+                
+                if (content) {
+                    content.style.opacity = '1';
+                    content.style.transform = 'translateY(0)';
+                }
+            }, 1500);
+        }
+
+        function setupButtons() {
+    const buttons = {
+        'btn-inicio': 'login.html',  // Se mantiene la redirección a login.html
+        'btn-bloggy': 'bloggy.html',
+        'btn-biblioteck': 'biblioteck.html',
+        'btn-faq': 'faq.html'
+    };
+
+    Object.entries(buttons).forEach(([id, url]) => {
+        const button = document.getElementById(id);
+        if (button) {
+            button.addEventListener('click', () => {
+                window.location.href = url;
+            });
+        }
+    });
+}
+
+function showLoginForm() {
+    // Aquí puedes implementar la lógica para mostrar el formulario de login
+    // Por ejemplo, puedes tener un div oculto con el formulario y mostrarlo:
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.style.display = 'block';
+    } else {
+        console.error('El formulario de login no se encontró');
+    }
+}
+        function setupIntersectionObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const animation = entry.target.dataset.animation;
+                        if (animation) {
+                            entry.target.classList.add(animation);
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('[data-animation]').forEach(el => observer.observe(el));
+        }
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', init);
+        function init() {
+            setupWelcomeModal();
+            setupButtons();
+            animateLettersAndTransition();
+            setupIntersectionObserver();
+        }
+
+        function animateLettersAndTransition() {
+            const letters = document.querySelectorAll('.atenas-logo span');
+            const totalDuration = 4000; // 4 segundos
+            const delayPerLetter = totalDuration / letters.length;
+
+            // Animar cada letra
+            letters.forEach((letter, index) => {
+                setTimeout(() => {
+                    letter.style.opacity = '1';
+                    letter.style.transform = 'translateY(0)';
+                }, index * delayPerLetter);
+            });
+
+            // Después de 4 segundos, hacer la transición a la página principal
+            setTimeout(() => {
+                const loaderWrapper = document.querySelector('.loader-wrapper');
+                const content = document.querySelector('.content');
+
+                if (loaderWrapper) {
+                    loaderWrapper.style.opacity = '0';
+                    loaderWrapper.style.visibility = 'hidden';
+                }
+
+                if (content) {
+                    content.classList.add('show');
+                }
+            }, totalDuration);
+        }
+
+        // Tus funciones existentes
+        function setupWelcomeModal() {
+            const modal = document.getElementById('welcomeModal');
+            
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 100);
+
+            const span = document.getElementsByClassName("close")[0];
+            span.onclick = () => closeModalSmoothly(modal);
+
+            window.onclick = (event) => {
+                if (event.target == modal) {
+                    closeModalSmoothly(modal);
+                }
+            }
+
+            setTimeout(() => closeModalSmoothly(modal), 3000);
+        }
+
+        function closeModalSmoothly(modal) {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 300);
+        }
+
+        function setupButtons() {
+            const buttons = {
+                'btn-inicio': 'login.html',
+                'btn-bloggy': 'bloggy.html',
+                'btn-biblioteck': 'biblioteck.html',
+                'btn-faq': 'faq.html'
+            };
+
+            Object.entries(buttons).forEach(([id, url]) => {
+                const button = document.getElementById(id);
+                if (button) {
+                    button.addEventListener('click', () => {
+                        window.location.href = url;
+                    });
+                }
+            });
+        }
+
+        function setupIntersectionObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const animation = entry.target.dataset.animation;
+                        if (animation) {
+                            entry.target.classList.add(animation);
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('[data-animation]').forEach(el => observer.observe(el));
+        }
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', init);
+        function init() {
+            setupWelcomeModal();
+            setupButtons();
+            animateLettersAndTransition();
+            setupIntersectionObserver();
+            createBubbles();
+        }
+
+        function createBubbles() {
+            const bubblesContainer = document.querySelector('.floating-bubbles');
+            const bubbleCount = 20;
+
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                
+                // Tamaño aleatorio
+                const size = Math.random() * 50 + 10;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                
+                // Posición horizontal aleatoria
+                bubble.style.left = `${Math.random() * 100}%`;
+                
+                // Retraso aleatorio
+                bubble.style.animationDelay = `${Math.random() * 4}s`;
+                
+                bubblesContainer.appendChild(bubble);
+            }
+        }
+
+        function animateLettersAndTransition() {
+            const letters = document.querySelectorAll('.atenas-logo span');
+            const totalDuration = 4000;
+            const delayPerLetter = totalDuration / letters.length;
+
+            letters.forEach((letter, index) => {
+                setTimeout(() => {
+                    letter.style.opacity = '1';
+                    letter.style.transform = 'translateY(0)';
+                }, index * delayPerLetter);
+            });
+
+            setTimeout(() => {
+                const loaderWrapper = document.querySelector('.loader-wrapper');
+                const content = document.querySelector('.content');
+
+                if (loaderWrapper) {
+                    loaderWrapper.style.opacity = '0';
+                    loaderWrapper.style.visibility = 'hidden';
+                }
+
+                if (content) {
+                    content.classList.add('show');
+                }
+            }, totalDuration);
+        }
+
+        // Resto de tus funciones existentes...
+
+        document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

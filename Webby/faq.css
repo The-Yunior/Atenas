@@ -1,0 +1,169 @@
+@font-face {
+    font-family: asmodeus;
+    src: url(letrita/SpaceGrotesk-Regular.ttf);
+}
+
+
+
+:root {
+    --primary-color: #2c9caf;
+    --hover-color: #70bdca;
+    --text-color: white;
+    --background-color: rgba(255, 255, 255, 0.8);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-image: url(panties/gg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+p{
+    font-family: asmodeus;
+}
+
+h2{
+    font-family: asmodeus;
+    font-size: 30px;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0 15px; 
+    margin-top: 100%;
+}
+
+
+.content {
+    background-color: rgba(24, 26, 27, 0.8); 
+    color: #e8e6e3; 
+    padding: 30px;
+    border-radius: 10px; 
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+}
+
+.content h1 {
+    margin-top: 0;
+}
+
+.content p {
+    margin-bottom: 0;
+}
+
+::selection {
+    color: #fff;
+    background-color: #004daa;
+}
+
+body {
+    height: 200vh;
+}
+
+
+
+.animated-text {
+    position: absolute; 
+    top: 10px; 
+    right: 10px; 
+    font-size: 1.25rem; /* Usar rem para escalabilidad */
+    color: var(--primary-color);
+    animation: fadeIn 2s ease-in-out infinite; 
+}
+
+.logo {
+    width: 50px; 
+    height: auto; 
+    margin-right: 10px; 
+    animation: fadeInOut 4s ease-in-out infinite; 
+}
+
+@keyframes fadeIn {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+.button {
+    padding: 1em 2em;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--primary-color);
+    transition: all 0.5s ease; /* Menor duración para mejor respuesta */
+    font-size: 1rem; /* Usar rem para escalabilidad */
+    position: relative;
+    overflow: hidden;
+    outline: 1px solid var(--primary-color);
+}
+
+button:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+    outline: 2px solid var(--hover-color);
+    box-shadow: 4px 5px 17px -4px #268391;
+}
+
+button::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 0.5s ease; /* Menor duración para mejor respuesta */
+}
+
+button:hover::before {
+    width: 250%;
+}
+
+.texto1, .texto2, .texto3 {
+    max-width: 800px; 
+    margin: 50px auto; 
+    padding: 20px; 
+    background-color: var(--background-color); 
+    border-radius: 10px; 
+    box-shadow: 0 4px 20px var(--shadow-color); 
+    transition: transform 0.3s ease; 
+}
+
+h1, .tittle2 h2 {
+    text-align: center; 
+    color: var(--text-color);
+    font-family: monospace;
+    margin: 50px auto; 
+}
+
+p {
+    color: var(--text-color);
+    text-align: justify; 
+    line-height: 1.6; 
+    transition: transform 0.3s ease; 
+    border-radius: 15px; 
+}
+
+p:hover {
+    transform: translateY(-5px);}
+
+    .tittle3{
+        color: white;
+        text-align: center;
+        margin: 60px auto;
+
+    }
+
